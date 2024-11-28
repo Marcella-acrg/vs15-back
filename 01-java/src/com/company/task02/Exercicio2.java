@@ -28,6 +28,10 @@ public class Exercicio2 {
             switch (opcao) {
 
                 case 1:
+                    if (totalJogos >= jogosTotal) {
+                        System.out.println("Capacidade máxima atingida");
+                        break;
+                    }
                     System.out.println("Digite o nome do time da casa: ");
                     timesCasa[totalJogos] = scanner.nextLine();
 
