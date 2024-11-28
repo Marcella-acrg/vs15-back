@@ -5,11 +5,12 @@ import java.util.Scanner;
 public class Exercicio1 {
     public static void main(String[] args) {
 
-        String[] nomeDosPets = new String[3];
-        String[] tipoDosPets = new String[3];
+        int totalPets = 3;
+        String[] nomeDosPets = new String[totalPets];
+        String[] tipoDosPets = new String[totalPets];
 
+        int opcao = 0;
         Scanner ler = new Scanner(System.in);
-        int opcao;
 
         do {
             System.out.println("\n******** Sistema de Gerenciamento da Clínica de Pets ********");
