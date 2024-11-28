@@ -24,5 +24,59 @@ public class Exercicio2 {
             System.out.print("Escolha uma opção: ");
             int opcao = scanner.nextInt();
             scanner.nextLine();
+
+            switch (opcao) {
+
+                case 1:
+                    System.out.println("Digite o nome do time da casa: ");
+                    timesCasa[totalJogos] = scanner.nextLine();
+
+                    System.out.println("Digite o nome do time visitante: ");
+                    timesVisitantes[totalJogos] = scanner.nextLine();
+
+                    System.out.println("Digite o total de pontos do time da casa: ");
+                    pontuacoesCasa[totalJogos] = scanner.nextInt();
+
+                    System.out.println("Digite o total de pontos do time visitante");
+                    pontuacoesVisitantes[totalJogos] = scanner.nextInt();
+
+                    scanner.nextLine();
+                    System.out.println("Digite a data do jogo: ");
+                    datasJogos[totalJogos] = scanner.nextLine();
+
+                    totalJogos += 1;
+                    break;
+
+                case 2:
+                    for (int i = 0; i < totalJogos; i++) {
+                        System.out.println("Time casa: " + timesCasa[i] + " X Time visitante:" + timesVisitantes[i]);
+                        System.out.println("Na data: " + datasJogos[i]);
+                    }
+                    break;
+
+                case 3:
+                    System.out.println("Digite o nome do time: ");
+                    String nomePesquisa = scanner.nextLine();
+
+                    for (int i = 0; i < totalJogos; i++) {
+                        if (timesCasa[i].equals(nomePesquisa) || timesVisitantes[i].equals(nomePesquisa)){
+                            System.out.println("Time casa: " + timesCasa[i] + " X Time visitante:" + timesVisitantes[i]);
+                            System.out.println("Na data: " + datasJogos[i]);
+                        }
+                        else{
+                            System.out.println("Time nao encontrado.");
+                        }
+                    }
+                    break;
+
+                case 4:
+
+                    break;
+
+                case 5:
+                    System.out.println("Voce decidiu sair.");
+                    return;
+            }
+        }
     }
 }
