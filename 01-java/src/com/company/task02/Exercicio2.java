@@ -70,12 +70,31 @@ public class Exercicio2 {
                     break;
 
                 case 4:
-
+                    exibirClassificacao(timesCasa, pontuacoesCasa, "Times da Casa", totalJogos);
+                    exibirClassificacao(timesVisitantes, pontuacoesVisitantes, "Times Visitantes", totalJogos);
                     break;
 
                 case 5:
                     System.out.println("Voce decidiu sair.");
                     return;
+            }
+        }
+    }
+
+    static void exibirClassificacao(String[] times, int[] pontuacoes, String titulo, int totalJogos) {
+        System.out.println("\nClassificação: " + titulo);
+        for (int i = 0; i < totalJogos; i++) {
+            for (int j = i + 1; j < totalJogos; j++) {
+                if (times[j] != null && times[i] != null && times[i].equals(times[j])) {
+                    pontuacoes[i] += pontuacoes[j];
+                    times[j] = null;
+                }
+            }
+        }
+
+        for (int i = 0; i < totalJogos; i++) {
+            if (times[i] != null) {
+                System.out.println(times[i] + ": " + pontuacoes[i] + " pontos");
             }
         }
     }
