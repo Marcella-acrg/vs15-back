@@ -4,7 +4,6 @@ public class CarrinhoCompra {
     public static final int CEM_PORCENTO = 100;
     private Cliente cliente;
     private ArrayList<Produto> produtos = new ArrayList<>();
-    private int quantidadeItens = produtos.size();
     private Vendedor vendedor;
 
     public CarrinhoCompra(Cliente cliente, ArrayList<Produto> produtos, Vendedor vendedor) {
@@ -15,8 +14,9 @@ public class CarrinhoCompra {
 
     public void exibirRecibo(FormaPagamento formaPagamento){
         System.out.println("Cliente: " + this.cliente.getNome());
-        System.out.println("Total Itens: " + this.quantidadeItens);
-        System.out.println("Valor Total: " + calularValorTotal());
+        System.out.println("Total Itens: " + produtos.size());
+        System.out.printf("Valor Total: %.2f", calularValorTotal());
+        System.out.println("\n");
 
         for (int i = 0; i < this.produtos.size(); i++) {
             Produto produto = produtos.get(i);
@@ -42,10 +42,6 @@ public class CarrinhoCompra {
 
     public ArrayList<Produto> getProdutos() {
         return produtos;
-    }
-
-    public int getQuantidadeItens() {
-        return quantidadeItens;
     }
 
     public Vendedor getVendedor() {

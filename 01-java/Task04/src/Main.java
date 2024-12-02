@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 public class Main {
     Scanner scanner = new Scanner(System.in);
+    static ArrayList<Produto> produtos = new ArrayList<>();
+    static ArrayList<CarrinhoCompra> carrinhos = new ArrayList<>();
 
     public static void main(String[] args) {
         Cliente cliente = new Cliente("Fabio", "fabio@gmail.com", 1000);
@@ -11,12 +13,18 @@ public class Main {
         Produto produto2 = new Produto("Feijao", TipoProduto.ALIMENTOS, 5.90, 80);
         Produto produto3 = new Produto("Feijao", TipoProduto.ALIMENTOS, 5.90, 80);
 
-        ArrayList<Produto> produtos = new ArrayList<>();
+        produto1.setQuantidadeDesconto(5);
+
         produtos.add(produto1);
         produtos.add(produto2);
         produtos.add(produto3);
-        CarrinhoCompra  carrinhoCompra = new CarrinhoCompra(cliente, produtos, vendedor);
-        System.out.printf("%.2f",carrinhoCompra.calularValorTotal());
+        CarrinhoCompra  carrinhoCompra1 = new CarrinhoCompra(cliente, produtos, vendedor);
+
+        carrinhoCompra1.exibirRecibo(FormaPagamento.PIX);
+
+        carrinhos.add(carrinhoCompra1);
+
+        System.out.println(vendedor.calcularSalario(vendedor, carrinhos));
 
     }
 }

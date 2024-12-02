@@ -16,8 +16,8 @@ public class Vendedor {
         this.nome = nome;
         this.registro = registro;
         this.dataNascimento = dataNascimento;
-        this.valeTransporte = SALARIO_BASE;
-        this.salarioBase = VALE_TRANSPORTE_BASE;
+        this.valeTransporte = VALE_TRANSPORTE_BASE;
+        this.salarioBase = SALARIO_BASE;
     }
 
     public double calcularComissao(ArrayList<CarrinhoCompra> carrinhoCompras, Vendedor vendedor){
