@@ -24,16 +24,6 @@ public class CarrinhoCompra {
         }
     }
 
-    public void adicionarProduto(Produto produto){
-        this.produtos.add(produto);
-    }
-
-    public void removerProduto(Produto produto){
-        if (!produtos.remove(produto)){
-            System.out.println("Produto não encontrado.");
-        }
-    }
-
     public double calularValorTotal(){
         double soma = 0;
         for (Produto produto: this.produtos) {
