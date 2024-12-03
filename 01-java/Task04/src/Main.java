@@ -5,18 +5,21 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+
+    static Scanner scanner = new Scanner(System.in);
+    static ArrayList<Produto> produtos = new ArrayList<>();
+    static ArrayList<Cliente> clientes = new ArrayList<>();
+    static ArrayList<Vendedor> vendedores = new ArrayList<>();
+    static ArrayList<CarrinhoCompra> carrinhos = new ArrayList<>();
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<Produto> produtos = new ArrayList<>();
-        ArrayList<Cliente> clientes = new ArrayList<>();
-        ArrayList<Vendedor> vendedores = new ArrayList<>();
-        ArrayList<CarrinhoCompra> carrinhos = new ArrayList<>();
 
         int opcao;
         do {
             System.out.println("\n*************** Sistema de Compras Online ***************");
             System.out.println("1. Cadastrar Produto");
             System.out.println("2. Cadastrar Cliente");
+            System.out.println("3. Cadastrar Vendedor");
             System.out.println("3. Adicionar Produto ao Carrinho");
             System.out.println("4. Visualizar Carrinho");
             System.out.println("5. Finalizar Compra");
@@ -38,8 +41,11 @@ public class Main {
                     System.out.println("Tipo (1 - ALIMENTOS, 2 - BEBIDAS, 3 - LIMPEZA): ");
                     int tipo = scanner.nextInt();
                     TipoProduto tipoProduto = TipoProduto.values()[tipo - 1];
-                    produtos.add(new Produto(nomeProduto, tipoProduto, preco, quantidadeEstoque));
-                    System.out.println("Produto cadastrado com sucesso!");
+                    if (produtos.add(new Produto(nomeProduto, tipoProduto, preco, quantidadeEstoque))){
+                        System.out.println("Produto cadastrado com sucesso!");
+                    }else{
+                        System.out.println("Erro ao cadastrar!");
+                    }
                     break;
 
                 case 2:
@@ -49,16 +55,29 @@ public class Main {
                     String email = scanner.nextLine();
                     System.out.print("Dinheiro disponível: ");
                     double dinheiro = scanner.nextDouble();
-                    clientes.add(new Cliente(nomeCliente, email, dinheiro));
-                    System.out.println("Cliente cadastrado com sucesso!");
+                    if (clientes.add(new Cliente(nomeCliente, email, dinheiro))){
+                        System.out.println("Cliente cadastrado com sucesso!");
+                    }else{
+                        System.out.println("Erro ao cadastrar!");
+                    }
                     break;
 
                 case 3:
-
+                    System.out.print("Nome do Vendedor: ");
+                    String nomeVendedor = scanner.nextLine();
+                    System.out.print("Registro: ");
+                    String registro = scanner.nextLine();
+                    System.out.print("Data Nascimento: ");
+                    String dataNascimento = scanner.nextLine();
+                    if (vendedores.add(new Vendedor(nomeVendedor, registro, dataNascimento))){
+                        System.out.println("Vendedor cadastrado com sucesso!");
+                    }else{
+                        System.out.println("Erro ao cadastrar!");
+                    }
                     break;
 
                 case 4:
-
+                    
                     break;
 
                 case 5:
