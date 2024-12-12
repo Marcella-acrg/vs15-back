@@ -1,0 +1,81 @@
+-- Fazer um RIGHT JOIN entre as tabelas Pessoa e Contato:
+SELECT P.nome, C.numero
+	FROM VEM_SER.PESSOA p 
+	RIGHT JOIN VEM_SER.CONTATO c
+	ON p.ID_PESSOA = c.ID_PESSOA;
+
+
+-- Fazer um RIGHT JOIN entre as tabelas Pessoa, PESSOA_X_PESSOA_ENDERECO e Endereco_Pessoa
+SELECT * FROM VEM_SER.PESSOA p 
+	RIGHT JOIN VEM_SER.PESSOA_X_PESSOA_ENDERECO pxpe 
+	ON p.ID_PESSOA = pxpe.ID_PESSOA 
+	RIGHT JOIN VEM_SER.ENDERECO_PESSOA ep 
+	ON pxpe.ID_ENDERECO = ep.ID_ENDERECO
+	
+
+-- ***** EXEMPLO DO RIGHT JOIN entre as tabelas Pessoa, PESSOA_X_PESSOA_ENDERECO e Endereco_Pessoa selecionando apenas algumas colunas
+SELECT P.nome, EP.logradouro, EP.numero
+	FROM VEM_SER.PESSOA p 
+	RIGHT JOIN VEM_SER.PESSOA_X_PESSOA_ENDERECO pxpe 
+	ON p.ID_PESSOA = pxpe.ID_PESSOA 
+	RIGHT JOIN VEM_SER.ENDERECO_PESSOA ep 
+	ON pxpe.ID_ENDERECO = ep.ID_ENDERECO 
+	
+	
+
+-- Fazer um RIGHT JOIN de todas as tabelas (começando por pessoa)
+SELECT * FROM VEM_SER.PESSOA p
+	RIGHT JOIN VEM_SER.PESSOA_X_PESSOA_ENDERECO pxpe 
+	ON p.ID_PESSOA = pxpe.ID_PESSOA 
+	RIGHT JOIN VEM_SER.ENDERECO e 
+	ON pxpe.ID_ENDERECO = e.ID_ENDERECO
+	RIGHT JOIN VEM_SER.CONTATO c 
+	ON p.ID_PESSOA = c.ID_PESSOA
+	RIGHT JOIN VEM_SER.ENDERECO_PESSOA ep 
+	ON ep.ID_ENDERECO = e.ID_ENDERECO
+	
+
+-- Fazer um FULL JOIN entre as tabelas Pessoa e Contato:
+SELECT * FROM VEM_SER.PESSOA p
+	FULL JOIN VEM_SER.CONTATO c 
+	ON p.ID_PESSOA = c.ID_PESSOA;
+
+
+-- Fazer um FULL JOIN entre as tabelas Pessoa, PESSOA_X_PESSOA_ENDERECO e Endereco_Pessoa
+SELECT  * FROM VEM_SER.PESSOA p
+	FULL JOIN VEM_SER.PESSOA_X_PESSOA_ENDERECO pxpe 
+	ON p.ID_PESSOA = pxpe.ID_PESSOA 
+	FULL JOIN VEM_SER.ENDERECO_PESSOA ep 
+	ON pxpe.ID_ENDERECO = ep.ID_ENDERECO 
+	
+
+
+-- Fazer um FULL JOIN de todas as tabelas (começando por pessoa)
+SELECT * FROM VEM_SER.PESSOA p 
+	FULL JOIN VEM_SER.PESSOA_X_PESSOA_ENDERECO pxpe 
+	ON p.ID_PESSOA = pxpe.ID_PESSOA 
+	FULL JOIN VEM_SER.ENDERECO e 
+	ON pxpe.ID_ENDERECO = e.ID_ENDERECO 
+	FULL JOIN VEM_SER.CONTATO c 
+	ON p.ID_PESSOA = c.ID_PESSOA 
+	FULL JOIN VEM_SER.ENDERECO_PESSOA ep 
+	ON ep.ID_ENDERECO = e.ID_ENDERECO 
+
+
+	
+-- Utilizando o EXISTS, selecione as pessoas que tem endereço
+SELECT * FROM VEM_SER.PESSOA p 
+	WHERE EXISTS (
+	SELECT * FROM VEM_SER.PESSOA_X_PESSOA_ENDERECO pxpe 
+	WHERE p.ID_PESSOA = pxpe.ID_PESSOA
+);
+
+
+
+-- Utilizando o UNION, Selecione id, nome da tabela pessoa junto com id, logradouro da tabela endereço
+SELECT P.id_pessoa, P.nome 
+FROM VEM_SER.PESSOA p 
+UNION 
+SELECT EP.id_endereco, EP.logradouro
+FROM VEM_SER.ENDERECO_PESSOA ep;
+
